@@ -1,9 +1,12 @@
 import { useState } from 'react'
 import './style.css'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { setAvatar } from '../../store/activateSlice'
+import avatar from '../../assets/Avatar.png'
+
+
 const Avatar = () => {
-    const avatar = useSelector(state => state.activate.Avatar)
+    // const avatar = useSelector(state => state.activate.Avatar)
     const [file, setFile] = useState(avatar)
     const dispatch = useDispatch()
     

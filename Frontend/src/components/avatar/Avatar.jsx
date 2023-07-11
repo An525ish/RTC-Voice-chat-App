@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './style.css'
 import { useDispatch } from 'react-redux'
 import { setAvatar } from '../../store/activateSlice'
-import avatar from '../../assets/Avatar.png'
+import avatar from '../../assets/avatar.png'
 
 
 const Avatar = () => {

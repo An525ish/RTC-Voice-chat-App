@@ -3,19 +3,19 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const express = require('express');
 const router = require('./routes');
-
+const CLIENT_URL = process.env.CLIENT_URL
 const mongoose = require('mongoose');
 const ACTIONS = require('./actions');
 const corsOptions = {
   credentials: true,
-  origin: ['*'],
+  origin: [CLIENT_URL],
 };
 const app = express();
 const server = require('http').createServer(app);
 
 const io = require('socket.io')(server, {
   cors: {
-    origin: ['*'],
+    origin: [CLIENT_URL],
     method: ['GET', 'POST'],
   },
 });

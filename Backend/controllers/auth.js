@@ -61,11 +61,15 @@ exports.verifyOtp = async (req, res) => {
     res.cookie('accessToken', accessToken, {
       maxAge: 1000 * 60 * 60 * 24 * 30,
       httpOnly: true,
+      secure: true,
+      sameSite: 'none',
     });
 
     res.cookie('refreshToken', refreshToken, {
       maxAge: 1000 * 60 * 60 * 24 * 30,
       httpOnly: true,
+      secure: true,
+      sameSite: 'none',
     });
 
     res.json({ user });
@@ -73,8 +77,8 @@ exports.verifyOtp = async (req, res) => {
 };
 
 exports.refresh = async (req, res) => {
-  const { refreshToken: Cookietoken } = req.cookies
-  if(!Cookietoken) return res.json({user : null})
+  const { refreshToken: Cookietoken } = req.cookies;
+  if (!Cookietoken) return res.json({ user: null });
 
   let userData;
   try {
@@ -84,9 +88,14 @@ exports.refresh = async (req, res) => {
   }
 
   try {
-    await tokenService.findRefreshToken(Cookietoken, userData._id)
+    await tokenService.findRefreshToken(Cookietoken, userData._id);
   } catch (error) {
-    return res.status(500).json({ message: 'Refresh token could not be found in the database', error:error });
+    return res
+      .status(500)
+      .json({
+        message: 'Refresh token could not be found in the database',
+        error: error,
+      });
   }
 
   const user = await userService.findUser({ _id: userData._id });
@@ -101,7 +110,9 @@ exports.refresh = async (req, res) => {
   try {
     await tokenService.updateRefreshToken(refreshToken, userData._id);
   } catch (error) {
-    res.status(500).json({ message: 'Refresh token could not be updated in the database' });
+    res
+      .status(500)
+      .json({ message: 'Refresh token could not be updated in the database' });
   }
 
   res.cookie('accessToken', accessToken, {
@@ -114,11 +125,11 @@ exports.refresh = async (req, res) => {
     httpOnly: true,
   });
 
-  res.json({user});
+  res.json({ user });
 };
 
-exports.Logout = async (req, res)=> {
-  const {refreshToken} = req.cookies
+exports.Logout = async (req, res) => {
+  const { refreshToken } = req.cookies;
 
   await tokenService.deleteRefreshToken(refreshToken);
   // try {
@@ -128,5 +139,5 @@ exports.Logout = async (req, res)=> {
 
   res.clearCookie('refreshToken');
   res.clearCookie('accessToken');
-  res.json ({user : null})
-}
+  res.json({ user: null });
+};

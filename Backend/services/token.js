@@ -3,7 +3,7 @@ const refresh = require('../models/refreshToken');
 
 exports.generateToken = (payload) => {
   const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN, {
-    expiresIn: '1m',
+    expiresIn: '1h',
   });
   const refreshToken = jwt.sign(payload, process.env.REFRESH_TOKEN, {
     expiresIn: '1y',

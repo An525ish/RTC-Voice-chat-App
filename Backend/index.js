@@ -8,14 +8,14 @@ const mongoose = require('mongoose');
 const ACTIONS = require('./actions');
 const corsOptions = {
   credentials: true,
-  origin: ['http://localhost:5173'],
+  origin: ['*'],
 };
 const app = express();
 const server = require('http').createServer(app);
 
 const io = require('socket.io')(server, {
   cors: {
-    origin: ['http://localhost:5173'],
+    origin: ['*'],
     method: ['GET', 'POST'],
   },
 });

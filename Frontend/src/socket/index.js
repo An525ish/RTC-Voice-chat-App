@@ -1,5 +1,5 @@
 import {io} from 'socket.io-client'
-
+const BASE_URL = import.meta.env.VITE_APP_BASE_URL
 export const socketInit = () => {
     const options = {
         'force new connection' : true,
@@ -8,5 +8,5 @@ export const socketInit = () => {
         transports : ['websocket'],
     }
 
-    return io('http://localhost:8080', options)
+    return io(BASE_URL, options)
 }

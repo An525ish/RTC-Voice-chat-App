@@ -3,6 +3,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const express = require('express');
 const router = require('./routes');
+const path = require('path')
 const CLIENT_URL = process.env.CLIENT_URL
 const mongoose = require('mongoose');
 const ACTIONS = require('./actions');
@@ -21,7 +22,9 @@ const io = require('socket.io')(server, {
 });
 app.use(cors(corsOptions));
 app.use(cookieParser());
+app.use(express.static(path.join(__dirname, '../Frontend/dist')))
 app.use('/storage', express.static('storage'));
+
 app.use(express.json({ limit: '8mb' }));
 app.use(router);
 
@@ -31,6 +34,10 @@ async function main() {
   await mongoose.connect(process.env.MONGODB_URL);
   console.log('Database connection established');
 }
+
+app.get('*', (req, res)=>{
+    res.sendFile(path.join(__dirname, '../Frontend/dist/index.html'))
+})
 
 // Sockets
 const socketUserMap = {};

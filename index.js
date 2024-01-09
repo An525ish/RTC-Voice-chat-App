@@ -36,7 +36,7 @@ async function main() {
 }
 
 app.get('*', (req, res)=>{
-    res.sendFile(path.join('/opt/render/project/src', __dirname, './Client/dist/index.html'))
+    res.sendFile(path.join(__dirname, './Client/dist/index.html'))
 })
 
 // Sockets

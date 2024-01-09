@@ -2,6 +2,10 @@ import axios from 'axios';
 
 const BASE_URL = import.meta.env.VITE_APP_BASE_URL;
 const options = {
+  headers: {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH"
+  },
   withCredentials: true,
 };
 

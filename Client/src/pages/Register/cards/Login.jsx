@@ -29,7 +29,7 @@ const Login = ({ onNext }) => {
         <AuthCard title='☎️ Enter your phone number'>
             <div className='my-8 flex justify-center'>
                 <span className='text-2xl py-[.3rem] px-[.5rem] bg-[#262626] rounded-s-3xl h-[rem]'>🏳️‍🌈</span>
-                <input type='number' placeholder='+91 98233 24223' className='p-[.5rem] outline-none con rounded-e-3xl bg-[#262626]' value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} onKeyUp={handleEnter} />
+                <input type='number' placeholder='+91 34577 349534' className='p-[.5rem] outline-none con rounded-e-3xl bg-[#262626]' value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} onKeyUp={handleEnter} />
             </div>
             <Button className='my-8 mx-auto' onNext={handleOTP}>Next</Button>
             <p className='text-sm text-[#C4C5C5]'>By entering your number, you’re agreeing to our Terms of Service and Privacy Policy. Thanks!</p>

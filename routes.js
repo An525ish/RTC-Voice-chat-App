@@ -6,9 +6,6 @@ const { auth } = require('./middleware/auth')
 const { createRoom, getRoom, getAllRoom } = require('./controllers/room')
 
 router
-.get('/', (req, res) => {
-    res.send('Success')
-})
 .post('/api/send-otp', sendOTP)
 .post('/api/verify-otp', verifyOtp)
 .post('/api/activate', auth, activateUser)

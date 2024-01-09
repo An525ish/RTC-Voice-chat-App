@@ -22,7 +22,7 @@ const io = require('socket.io')(server, {
 });
 app.use(cors(corsOptions));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, './Client/dist')))
+app.use(express.static(path.join(__dirname, 'Client', 'dist', )))
 app.use('/storage', express.static('storage'));
 
 app.use(express.json({ limit: '8mb' }));
@@ -36,7 +36,7 @@ async function main() {
 }
 
 app.get('*', (req, res)=>{
-    res.sendFile(path.join(__dirname, './Client/dist/index.html'))
+    res.sendFile(path.resolve(__dirname, 'Client', 'dist', 'index.html'))
 })
 
 // Sockets

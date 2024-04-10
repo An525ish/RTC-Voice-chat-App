@@ -24,7 +24,7 @@ const RoomOptionModal = ({ showModal, SetshowModal, roomType, setRoomType }) => 
     }
     return (
         <Modal showModal={showModal} SetshowModal={SetshowModal}>
-            <AuthCard className='md:w-[26rem] md:h-auto'>
+            <AuthCard className='md:w-[26rem] md:h-auto p-6'>
                 <h3 className="text-lg font-semibold leading-6">Enter the topics to be discussed</h3>
                 <input className="w-full outline-none rounded-3xl py-1 px-4 my-3 bg-[#262626] h-9" type="text" placeholder="E.g. : Use of AI/ML" onChange={(e) => setTopic(e.target.value)} value={topic} maxLength={25} />
                 <p className="text-lg font-semibold capitalize">Room type - {roomType}</p>

@@ -26,7 +26,7 @@ const Login = ({ onNext }) => {
         }
     }
     return (
-        <AuthCard title='☎️ Enter your phone number'>
+        <AuthCard className={'w-[25rem] h-[20rem] md:p-6 p-4'} title='☎️ Enter your phone number'>
             <div className='my-8 flex justify-center'>
                 <span className='text-2xl py-[.3rem] px-[.5rem] bg-[#262626] rounded-s-3xl h-[rem]'>🏳️‍🌈</span>
                 <input type='number' placeholder='+91 34577 349534' className='p-[.5rem] outline-none con rounded-e-3xl bg-[#262626]' value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} onKeyUp={handleEnter} />

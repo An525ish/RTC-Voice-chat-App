@@ -5,7 +5,7 @@ const RoomCard = ({ room, onClick }) => {
 
   return (
     <div className="cursor-pointer w-full md:w-auto" onClick={onClick}>
-      <AuthCard className='md:w-[18rem] h-[10rem] md:h-[10rem] p-[.25rem] px-[1rem] text-left hover:bg-opacity-70 transition '>
+      <AuthCard className='md:w-[18rem] h-[10rem] md:h-[10rem] p-4 text-left hover:bg-opacity-70 transition '>
         <h3 className="text-lg font-semibold leading-6 capitalize text-left">{room.topic}</h3>
         <div className="flex gap-16 my-4">
           <div className="">

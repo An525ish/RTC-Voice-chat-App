@@ -15,36 +15,36 @@ const Username = () => {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    
-    const fullname = activate.fullname
-    const name = fullname.split(' ')[1] ? (fullname.split(' ')[0] + ' ' + fullname.split(' ')[1].slice(0,1)) : fullname
 
-    const handleChange = (e)=>{
+    const fullname = activate.fullname
+    const name = fullname.split(' ')[1] ? (fullname.split(' ')[0] + ' ' + fullname.split(' ')[1].slice(0, 1)) : fullname
+
+    const handleChange = (e) => {
         setnickName(e.target.value)
         dispatch(setDisplayname(e.target.value))
     }
 
     const handleActivation = async () => {
-        if(!nickName) return
-            try {
-                const {data} = await api('/api/activate', activate)
-                dispatch(setAuth(data))
-                navigate('/rooms')
-                
-            } catch (error) {
-                console.log(error.response.data)
-            }
+        if (!nickName) return
+        try {
+            const { data } = await api('/api/activate', activate)
+            dispatch(setAuth(data))
+            navigate('/rooms')
+
+        } catch (error) {
+            console.log(error.response.data)
         }
-    
+    }
+
 
     return (
-        <AuthCard title={`😌 Hey, ${name}. !`}>
+        <AuthCard className={'md:w-[25rem] w-full md:p-6 p-2'} title={`😌 Hey, ${name}. !`}>
             <p className='text-sm text-[#C4C5C5]'>How's this photo ?</p>
-            <div className='flex justify-between items-center gap-4'>
-                <Avatar/>
+            <div className='flex justify-between items-center md:gap-4'>
+                <Avatar />
                 <div className='mt-8' >
-                    <label htmlFor='username' className='text-lg'>🤔 Choose an Username</label>
-                        <input type="text" placeholder='@FlameFox' id='username' className='py-[.5rem] px-[1rem] outline-none rounded-3xl bg-[#262626] my-4' onChange={handleChange} value={nickName}/>
+                    <label htmlFor='username' className='text-lg w-full truncate'>🤔 Choose an Username</label>
+                    <input type="text" placeholder='@FlameFox' id='username' className='py-[.5rem] px-[1rem] outline-none rounded-3xl bg-[#262626] my-4 w-full' onChange={handleChange} value={nickName} />
                 </div>
             </div>
             <Button className='my-3 mx-auto' onNext={handleActivation}>Next</Button >

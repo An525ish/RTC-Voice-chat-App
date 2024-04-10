@@ -12,29 +12,29 @@ const CodeVerification = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [otp, setOTP] = useState('');
-    const {phone, hash} = useSelector(state => state.auth.otp)
+    const { phone, hash } = useSelector(state => state.auth.otp)
 
-    const resendOTP = async ()=>{
-        const {data} = await api('/api/send-otp', { phone })
+    const resendOTP = async () => {
+        const { data } = await api('/api/send-otp', { phone })
         console.log(data)
         setOTP('')
         dispatch(setOtp({ phone: data.phone, hash: data.hashforToken }))
     }
     const handleVerification = async () => {
-        if(!otp) return;
-        
+        if (!otp) return;
+
         try {
-            const {data} = await api('/api/verify-otp', {otp, phone, hash},)
+            const { data } = await api('/api/verify-otp', { otp, phone, hash },)
             console.log(data)
             dispatch(setAuth(data))
             navigate('/activate');
-            
+
         } catch (error) {
             console.log(error)
         }
     }
     return (
-        <AuthCard title='🔒 Enter the code'>
+        <AuthCard className={'w-[25rem] md:p-6 p-4'} title='🔒 Enter the code'>
             <OtpInput
                 containerStyle="flex gap-4 justify-center my-8"
                 inputStyle="w-[3rem!important] h-[3rem] outline-none text-center p-[.5rem] rounded-2xl"

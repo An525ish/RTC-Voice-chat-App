@@ -14,15 +14,15 @@ const Header = () => {
     navigate('/')
   }
   return (
-    <header className="h-[3rem] flex justify-between">
+    <header className="h-[3rem] flex justify-between items-center">
       <Link to='/'>
         <h1 className="text-[1.5rem] font-semibold">👽 Apna Adda</h1>
       </Link>
       {isAuth &&
         <div className="flex gap-4">
-          { user.activated && 
+          {user.activated &&
             <div className="flex gap-4 items-center">
-              <span className="capitalize font-semibold">{user.username}</span>
+              <span className="capitalize font-semibold md:block hidden">{user.username}</span>
               <div className="w-10 h-10 rounded-full border-2 border-[#0077FF] overflow-hidden">
                 <img className='object-cover w-full h-full' src={user.avatar} alt="profile" />
               </div>

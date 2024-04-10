@@ -57,8 +57,8 @@ const Room = () => {
           <h2 className="font-semibold text-xl capitalize">{room.topic}</h2>
         </div>
         <div className='flex gap-4'>
-          <button className='py-[.5rem] px-3 bg-[#262626] rounded-full'>✌️</button>
-          <button className='py-[.5rem] px-3 bg-[#262626] flex gap-1 items-center font-semibold rounded-3xl' onClick={() => navigate('/rooms')}>✌️ Leave quietly</button>
+          <button className='py-[.5rem] px-3 bg-[#262626] rounded-full'>🤚</button>
+          <button className='py-[.5rem] px-3 bg-[#262626] md:flex hidden gap-1 items-center font-semibold rounded-3xl' onClick={() => navigate('/rooms')}>✌️ Leave quietly</button>
         </div>
       </div>
       <div className='flex gap-10 flex-wrap mt-10'>

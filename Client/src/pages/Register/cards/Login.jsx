@@ -14,12 +14,12 @@ const Login = ({ onNext }) => {
     }
 
     const handleOTP = async () => {
-        if(!phoneNumber) return;
+        if (!phoneNumber) return;
 
         try {
             const { data } = await api('/api/send-otp', { 'phone': '+91' + phoneNumber })
             dispatch(setOtp({ phone: data.phone, hash: data.hashforToken }))
-            console.log(data)
+            console.log(data.OTP)
             onNext()
         } catch (error) {
             console.log(error)

@@ -3,7 +3,7 @@ import axios from 'axios';
 const BASE_URL = import.meta.env.VITE_APP_BASE_URL;
 const options = {
   headers: {
-    "Access-Control-Allow-Origin": "*",
+    'Access-Control-Allow-Origin': '*',
   },
   withCredentials: true,
 };
@@ -23,21 +23,37 @@ axios.interceptors.response.use(
     return config;
   },
   async (error) => {
-    const originalRqst = error.config;
+    const originalRequest = error.config;
 
+    // Check if the error is due to unauthorized access (status code 401)
     if (
       error.response.status === 401 &&
-      originalRqst &&
-      !originalRqst._isRetry 
+      originalRequest &&
+      !originalRequest._isRetry
     ) {
-      originalRqst._isRetry = true;
+      originalRequest._isRetry = true;
+
       try {
-        await axios.get(BASE_URL + '/api/refresh', options);
-        return axios.request(originalRqst);
-      } catch (error) {
-        console.log(error.message);
+        // Attempt to refresh the token
+        const { data } = await axios.get(BASE_URL + '/api/refresh', options);
+        console.log(data);
+        // Update the access token in the request headers with the new token
+        originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
+
+        // Retry the original request with the updated access token
+        return axios(originalRequest);
+      } catch (refreshError) {
+        // Handle refresh token request error
+        console.error('Refresh token request failed:', refreshError);
+
+        // Redirect to login or handle the error appropriately
+        // For example, you might want to clear authentication state and redirect to login
+        // history.push('/login');
+        throw refreshError;
       }
     }
-    else throw error
-  }, options
+
+    // If the error is not related to unauthorized access or refresh token, throw it
+    throw error;
+  }
 );

@@ -16,7 +16,7 @@ const CodeVerification = () => {
 
     const resendOTP = async () => {
         const { data } = await api('/api/send-otp', { phone })
-        console.log(data)
+        console.log('OTP', data.OTP)
         setOTP('')
         dispatch(setOtp({ phone: data.phone, hash: data.hashforToken }))
     }
@@ -25,7 +25,6 @@ const CodeVerification = () => {
 
         try {
             const { data } = await api('/api/verify-otp', { otp, phone, hash },)
-            console.log(data)
             dispatch(setAuth(data))
             navigate('/activate');
 

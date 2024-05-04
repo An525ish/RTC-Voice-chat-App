@@ -1,7 +1,6 @@
 import AuthCard from './AuthCard'
 
 const RoomCard = ({ room, onClick }) => {
-  console.log(room)
 
   return (
     <div className="cursor-pointer w-full md:w-auto" onClick={onClick}>

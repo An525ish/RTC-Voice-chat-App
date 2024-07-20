@@ -17,8 +17,8 @@ exports.sendOTP = async (req, res) => {
   const hashedOTP = hash(data);
 
   try {
-    // await otpServices.sendSMS(OTP, phone);
-    res.json({ hashforToken: `${hashedOTP}.${expireTime}`, phone, OTP });
+    await otpServices.sendSMS(OTP, phone);
+    res.json({ hashforToken: `${hashedOTP}.${expireTime}`, phone });
   } catch (error) {
     res.status(500).json({ error: 'Could not send the OTP' });
   }
@@ -90,12 +90,10 @@ exports.refresh = async (req, res) => {
   try {
     await tokenService.findRefreshToken(Cookietoken, userData._id);
   } catch (error) {
-    return res
-      .status(500)
-      .json({
-        message: 'Refresh token could not be found in the database',
-        error: error,
-      });
+    return res.status(500).json({
+      message: 'Refresh token could not be found in the database',
+      error: error,
+    });
   }
 
   const user = await userService.findUser({ _id: userData._id });

@@ -19,7 +19,6 @@ const Login = ({ onNext }) => {
         try {
             const { data } = await api('/api/send-otp', { 'phone': '+91' + phoneNumber })
             dispatch(setOtp({ phone: data.phone, hash: data.hashforToken }))
-            console.log('OTP', data.OTP)
             onNext()
         } catch (error) {
             console.log(error)
